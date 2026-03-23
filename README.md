@@ -1,4 +1,4 @@
-# FashionSwap - Cosmetic Store
+# Cosmetic Store
 
 A luxury beauty products store built with Next.js to explore and compare different state management approaches in React.
 
