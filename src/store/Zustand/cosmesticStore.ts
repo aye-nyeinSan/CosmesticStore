@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { luxuryBrands, products } from "../../data/products";
+import { luxuryBrands, products } from "../../../data/products";
 import { BrandCount, FilterState, Product } from "@/types/product";
 
 const defaultFilters: FilterState = {
@@ -8,10 +8,8 @@ const defaultFilters: FilterState = {
 };
 const brandCounts: BrandCount[] = luxuryBrands.map((brand) => ({
   brand,
-  count: products.filter(
-    (p) =>
-      p.brand === brand).length
-}))
+  count: products.filter((p) => p.brand === brand).length,
+}));
 
 function filterProducts(filters: FilterState): Product[] {
   return products.filter((p) => {
@@ -24,7 +22,6 @@ function filterProducts(filters: FilterState): Product[] {
   });
 }
 
-
 function computeBrandCounts(filters: FilterState): BrandCount[] {
   return luxuryBrands.map((brand) => ({
     brand,
@@ -36,7 +33,6 @@ function computeBrandCounts(filters: FilterState): BrandCount[] {
     ).length,
   }));
 }
-
 
 interface CosmesticStore {
   filters: FilterState;
@@ -61,6 +57,6 @@ export const useCosmesticStore = create<CosmesticStore>((set) => ({
     set({
       filters: defaultFilters,
       filteredProducts: filterProducts(defaultFilters),
-      brandCounts
+      brandCounts,
     }),
 }));

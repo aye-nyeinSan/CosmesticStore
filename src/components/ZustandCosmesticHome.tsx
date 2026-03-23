@@ -1,7 +1,7 @@
 "use client";
 import { FilterSidebar } from "@/components/FilterSideBar";
 import { ProductGrid } from "@/components/ProductGrid";
-import { useCosmesticStore } from "@/store/cosmesticStore";
+import { useCosmesticStore } from "@/store/Zustand/cosmesticStore";
 
 export default function ZustandCosmeticHome() {
   const filters = useCosmesticStore((s) => s.filters);
