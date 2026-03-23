@@ -73,7 +73,7 @@ export function FilterSidebar({
               max={300}
               min={0}
               step={5}
-              className="w-full"
+              className="w-full "
             />
           </div>
           <div className="flex justify-between text-sm text-muted-foreground">

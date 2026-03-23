@@ -35,8 +35,13 @@ export const useCosmesticStore = create<CosmesticStore>((set) => ({
   filters: defaultFilters,
   filteredProducts: filterProducts(defaultFilters),
   brandCounts,
-  setFilters: (filters: FilterState) =>
-    set({ filters, filteredProducts: filterProducts(filters) }),
+  setFilters: (filters: FilterState) => {
+    console.log('store::',filters ) //{priceRange , selectedBrands}
+    set({ filters, filteredProducts: filterProducts(filters) })
+  },
   resetFilters: () =>
-    set({ filters: defaultFilters, filteredProducts: filterProducts(defaultFilters) }),
+    set({
+      filters: defaultFilters,
+      filteredProducts: filterProducts(defaultFilters),
+    }),
 }));
