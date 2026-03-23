@@ -6,6 +6,12 @@ const defaultFilters: FilterState = {
   priceRange: [0, 300],
   selectedBrands: [],
 };
+const brandCounts: BrandCount[] = luxuryBrands.map((brand) => ({
+  brand,
+  count: products.filter(
+    (p) =>
+      p.brand === brand).length
+}))
 
 function filterProducts(filters: FilterState): Product[] {
   return products.filter((p) => {
@@ -18,10 +24,19 @@ function filterProducts(filters: FilterState): Product[] {
   });
 }
 
-const brandCounts: BrandCount[] = luxuryBrands.map((brand) => ({
-  brand,
-  count: products.filter((p) => p.brand === brand).length,
-}));
+
+function computeBrandCounts(filters: FilterState): BrandCount[] {
+  return luxuryBrands.map((brand) => ({
+    brand,
+    count: products.filter(
+      (p) =>
+        p.brand === brand &&
+        p.price >= filters.priceRange[0] &&
+        p.price <= filters.priceRange[1]
+    ).length,
+  }));
+}
+
 
 interface CosmesticStore {
   filters: FilterState;
@@ -36,12 +51,16 @@ export const useCosmesticStore = create<CosmesticStore>((set) => ({
   filteredProducts: filterProducts(defaultFilters),
   brandCounts,
   setFilters: (filters: FilterState) => {
-    console.log('store::',filters ) //{priceRange , selectedBrands}
-    set({ filters, filteredProducts: filterProducts(filters) })
+    set({
+      filters,
+      filteredProducts: filterProducts(filters),
+      brandCounts: computeBrandCounts(filters),
+    });
   },
   resetFilters: () =>
     set({
       filters: defaultFilters,
       filteredProducts: filterProducts(defaultFilters),
+      brandCounts
     }),
 }));
