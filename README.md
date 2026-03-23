@@ -4,7 +4,7 @@
 
 - Creating a global state which is `useCosmeticStore` hook to update the state of the filtered products based on price ranges and brands. 
 
-
+PS: I couldn't find the link to the example UI from the Figma Community. 
 
 
 
